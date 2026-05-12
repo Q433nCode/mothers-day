@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Mother's Day 💝</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --rose:#c8556a;--blush:#f5d0d8;--cream:#fdf6f0;--gold:#c9985a;
+  --deep:#2a1a1f;--text:#4a2d35;--petite:#e8b4be;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text);font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh}
+
+.petal-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.petal{position:absolute;opacity:0;animation:fall linear infinite}
+@keyframes fall{
+  0%{transform:translateY(-60px) rotate(0deg) scale(1);opacity:0}
+  5%{opacity:0.6}90%{opacity:0.35}
+  100%{transform:translateY(110vh) rotate(720deg) scale(0.5);opacity:0}
+}
+
+#hero{
+  position:relative;z-index:1;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:2rem;
+  background:radial-gradient(ellipse at 50% 40%,#fde8ed 0%,var(--cream) 70%);
+}
+.hero-eyebrow{font-family:'Inter',sans-serif;font-size:0.72rem;font-weight:300;letter-spacing:0.3em;color:var(--rose);text-transform:uppercase;margin-bottom:1.5rem;opacity:0;animation:fadeUp 1s ease 0.3s forwards}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,10vw,7rem);font-weight:700;line-height:1.05;color:var(--deep);opacity:0;animation:fadeUp 1.2s ease 0.6s forwards}
+.hero-title em{font-style:italic;color:var(--rose)}
+.hero-divider{width:80px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:2rem auto;opacity:0;animation:fadeUp 1s ease 1s forwards}
+.hero-sub{font-size:clamp(1.1rem,3vw,1.5rem);font-weight:300;font-style:italic;color:var(--text);max-width:560px;line-height:1.8;opacity:0;animation:fadeUp 1s ease 1.2s forwards}
+.hero-scroll{position:absolute;bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 1s ease 2s forwards;cursor:pointer;color:var(--rose);font-family:'Inter',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase}
+.scroll-line{width:1px;height:40px;background:var(--rose);animation:scrollPulse 1.8s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(0.4);opacity:0.3}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+#letter{position:relative;z-index:1;padding:6rem 2rem;max-width:700px;margin:0 auto;text-align:center}
+.letter-tag{font-family:'Inter',sans-serif;font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
+.letter-body{font-size:clamp(1.1rem,2.5vw,1.35rem);line-height:2;font-weight:300;color:var(--text);text-align:left}
+.letter-body p{margin-bottom:1.5rem}
+.letter-body strong{font-weight:600;color:var(--rose);font-style:italic}
+.letter-sig{font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;color:var(--rose);margin-top:3rem;text-align:right}
+.divider-line{width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--rose),transparent);margin:4rem auto;position:relative;z-index:1}
+
+#gallery{position:relative;z-index:1;padding:4rem 1rem 5rem;background:var(--deep);overflow:hidden}
+.gallery-label{text-align:center;font-family:'Inter',sans-serif;font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--petite);margin-bottom:2.5rem;opacity:0.7}
+
+.slides-outer{position:relative;max-width:740px;margin:0 auto}
+.slide{display:none;flex-direction:column;border-radius:6px;overflow:hidden;background:#1a0d12}
+.slide.active{display:flex}
+
+.slide-photo-wrap{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#1a0d12;flex-shrink:0}
+.slide-photo-wrap img{width:100%;height:100%;object-fit:cover;filter:brightness(0.55) saturate(0.85);display:block}
+.photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:linear-gradient(135deg,#2a1a1f,#1a0d12 50%,#2a1520)}
+.photo-placeholder-icon{font-size:3.5rem;opacity:0.25}
+.photo-placeholder-text{font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25)}
+
+.slide-quote-banner{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(18,6,10,0.96) 0%,rgba(18,6,10,0.5) 60%,transparent 100%);padding:2rem 2rem 1.5rem}
+.slide-quote-text{font-family:'Playfair Display',serif;font-size:clamp(1rem,2.8vw,1.45rem);font-style:italic;color:#fff;line-height:1.5;opacity:0;transform:translateY(12px);transition:opacity 0.9s ease 0.35s,transform 0.9s ease 0.35s}
+.slide.active .slide-quote-text{opacity:1;transform:translateY(0)}
+
+.slide-message{background:#1a0d12;padding:2rem;border-top:1px solid rgba(200,85,106,0.18)}
+.slide-message-body{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.2vw,1.2rem);font-weight:300;line-height:2;color:rgba(255,255,255,0.8);opacity:0;transform:translateY(10px);transition:opacity 0.9s ease 0.65s,transform 0.9s ease 0.65s;white-space:pre-line}
+.slide.active .slide-message-body{opacity:1;transform:translateY(0)}
+
+.slide-footer{display:flex;align-items:center;justify-content:space-between;max-width:740px;margin:1.5rem auto 0;padding:0 0.25rem}
+.slide-counter{font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.15em;color:rgba(255,255,255,0.3)}
+.slide-dots{display:flex;gap:8px;align-items:center}
+.dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;transition:background 0.4s,transform 0.4s}
+.dot.active{background:var(--rose);transform:scale(1.6)}
+
+.slide-nav{display:flex;justify-content:center;gap:1rem;margin-top:1.5rem}
+.nav-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:#fff;width:46px;height:46px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background 0.3s,transform 0.2s}
+.nav-btn:hover{background:rgba(200,85,106,0.35);transform:scale(1.08)}
+
+#outro{position:relative;z-index:1;text-align:center;padding:6rem 2rem;background:radial-gradient(ellipse at 50% 100%,#fde8ed 0%,var(--cream) 60%)}
+.outro-heart{font-size:2.5rem;animation:heartbeat 1.8s ease-in-out infinite;display:block;margin-bottom:1.5rem}
+@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.18)}28%{transform:scale(1)}42%{transform:scale(1.1)}56%{transform:scale(1)}}
+.outro-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,4rem);font-style:italic;color:var(--deep);margin-bottom:1rem}
+.outro-sub{font-size:1.2rem;color:var(--rose);font-style:italic}
+
+#upload-hint{background:var(--deep);color:rgba(255,255,255,0.5);text-align:center;padding:1.2rem 2rem;font-family:'Inter',sans-serif;font-size:0.75rem;letter-spacing:0.04em;line-height:1.9;position:relative;z-index:1}
+code{background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:3px;font-size:0.7rem}
+
+@media(max-width:600px){
+  .slide-quote-banner{padding:1.4rem 1.2rem 1rem}
+  .slide-message{padding:1.5rem 1.2rem}
+  #letter{padding:4rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="petal-bg" id="petals"></div>
+
+<section id="hero">
+  <p class="hero-eyebrow">A message from your child — with all the love in the world</p>
+  <h1 class="hero-title">Happy <em>Mother's</em><br>Day</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">For the woman who held the whole world together with just her two hands.</p>
+  <div class="hero-scroll" onclick="document.getElementById('letter').scrollIntoView({behavior:'smooth'})">
+    <div class="scroll-line"></div>
+    <span>Read on</span>
+  </div>
+</section>
+
+<section id="letter">
+  <p class="letter-tag">A letter to Mama</p>
+  <div class="letter-body">
+    <p>Mama,</p>
+    <p>There is no mathematics that can measure what you have done for me. You stood alone at the crossroads where most would have buckled — and you <strong>chose me, every single day.</strong></p>
+    <p>You were the alarm clock and the lullaby. The one who packed the lunch and wiped the tears. The one who worked when your body was tired and still saved enough warmth to make me feel safe. You wore the weight of two parents like it was the simplest thing in the world — and you made it look like love, never like sacrifice.</p>
+    <p>I see it now, Mama. I see every early morning you traded for my comfort. Every dream you quietly tucked away so mine could breathe. Every moment you were afraid but smiled for me anyway.</p>
+    <p>You are the reason I know what <strong>strength looks like.</strong> You are the reason I know that love is not just a feeling — it is a choice you make again and again, even when it is hard. Especially when it is hard.</p>
+    <p>No gift, no card, no day on the calendar can hold the size of my gratitude. But I want you to know — <strong>you are my greatest blessing, and I am so proud to be your child.</strong></p>
+    <p>Thank you for being everything. You are, and will always be, my whole heart.</p>
+  </div>
+  <p class="letter-sig">Forever yours 🌹</p>
+</section>
+
+<div class="divider-line"></div>
+
+<section id="gallery">
+  <p class="gallery-label">Our moments together — 4 reasons I love you</p>
+  <div class="slides-outer">
+    <div id="slides-container"></div>
+    <div class="slide-footer">
+      <span class="slide-counter" id="counter">1 / 4</span>
+      <div class="slide-dots" id="slide-dots"></div>
+    </div>
+    <div class="slide-nav">
+      <button class="nav-btn" onclick="changeSlide(-1)" aria-label="Previous">&#8592;</button>
+      <button class="nav-btn" onclick="changeSlide(1)" aria-label="Next">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<section id="outro">
+  <span class="outro-heart">💝</span>
+  <h2 class="outro-title">I love you, Mama</h2>
+  <p class="outro-sub">Now. Always. Forever.</p>
+</section>
+
+<div id="upload-hint">
+ In a text editor · find the <code>SLIDES</code> array · set <code>photo: "yourfile.jpg"</code> for each slide · place the image files in the same folder as this HTML file.
+</div>
+
+<script>
+const SLIDES = [
+  {
+    photo: "1.jpg",
+    quote: "Your sacrifices became my blessings.",
+    message: `Mom, thank you for carrying responsibilities that were never meant for one person alone.\nYou worked hard, stayed strong, and sacrificed so much just to make sure I was okay.\nEven when life was difficult, you still gave me love, comfort, and hope.\nEverything beautiful in my life started with your sacrifices.\n\nHappy Mother's Day Mommy ❤️`
+  },
+  {
+    photo: "2.jpg",
+    quote: "Behind every strong child is a mother who never gave up.",
+    message: `Mom, thank you for being both my mother and my father.\nYou carried burdens nobody saw, yet you still stood tall for me every single day.\nYour love protected me, guided me, and shaped the person I am becoming.\n\nI will forever appreciate everything you have done for me ❤️`
+  },
+  {
+    photo: "3.png",
+    quote: "Your love carried me through life.",
+    message: `No matter how old I grow, I will always need your love, your hugs, and your wisdom.\nYou were there for me during my happiest moments and my hardest days.\nYour heart has always been my safest place.\nThank you for loving me endlessly and unconditionally ❤️`
+  },
+  {
+    photo: "4.jpg",
+    quote: "Your strength taught me how to survive.",
+    message: `I watched you fight battles nobody knew about.\nYou stayed strong when life was heavy, and you never let me see how tired you truly were.\nYou taught me resilience, courage, and unconditional love through your actions.\nEverything good in me started with you, Mom.\n\nThank you for never giving up on us ❤️`
+  }
+];
+
+const container = document.getElementById('slides-container');
+const dotsWrap  = document.getElementById('slide-dots');
+const counter   = document.getElementById('counter');
+let current = 0, autoTimer;
+
+SLIDES.forEach((s, i) => {
+  const slide = document.createElement('div');
+  slide.className = 'slide' + (i === 0 ? ' active' : '');
+
+  const photoWrap = document.createElement('div');
+  photoWrap.className = 'slide-photo-wrap';
+
+  if (s.photo) {
+    const img = document.createElement('img');
+    img.src = s.photo; img.alt = 'Memory ' + (i + 1);
+    photoWrap.appendChild(img);
+  } else {
+    const ph = document.createElement('div');
+    ph.className = 'photo-placeholder';
+    ph.innerHTML = `<div class="photo-placeholder-icon">📷</div><div class="photo-placeholder-text">Add photo ${i + 1} of ${SLIDES.length}</div>`;
+    photoWrap.appendChild(ph);
+  }
+
+  const banner = document.createElement('div');
+  banner.className = 'slide-quote-banner';
+  banner.innerHTML = `<div class="slide-quote-text">\u201c${s.quote}\u201d</div>`;
+  photoWrap.appendChild(banner);
+  slide.appendChild(photoWrap);
+
+  const msgPanel = document.createElement('div');
+  msgPanel.className = 'slide-message';
+  const msgBody = document.createElement('div');
+  msgBody.className = 'slide-message-body';
+  msgBody.textContent = s.message;
+  msgPanel.appendChild(msgBody);
+  slide.appendChild(msgPanel);
+  container.appendChild(slide);
+
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.onclick = () => goTo(i);
+  dotsWrap.appendChild(dot);
+});
+
+function goTo(n) {
+  const slides = container.querySelectorAll('.slide');
+  const dots   = dotsWrap.querySelectorAll('.dot');
+  slides[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current = (n + SLIDES.length) % SLIDES.length;
+  slides[current].classList.add('active');
+  dots[current].classList.add('active');
+  counter.textContent = (current + 1) + ' / ' + SLIDES.length;
+  resetTimer();
+}
+function changeSlide(dir) { goTo(current + dir); }
+function resetTimer() {
+  clearInterval(autoTimer);
+  autoTimer = setInterval(() => goTo(current + 1), 8000);
+}
+resetTimer();
+
+const petalColors = ['#f5d0d8','#fde8ed','#e8b4be','#f0c4cc','#fad6dc'];
+const petalBg = document.getElementById('petals');
+for (let i = 0; i < 26; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  const sz = 4 + Math.random() * 14;
+  p.style.cssText = `left:${Math.random()*100}%;width:${sz}px;height:${sz*1.4}px;background:${petalColors[i%5]};animation-duration:${8+Math.random()*10}s;animation-delay:${Math.random()*14}s;transform:rotate(${Math.random()*360}deg);border-radius:${Math.random()>.5?'50% 5% 50% 5%':'5% 50% 5% 50%'}`;
+  petalBg.appendChild(p);
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.style.animation='fadeUp 0.9s ease forwards'; });
+}, {threshold:0.12});
+document.querySelectorAll('.letter-body p,.letter-sig,.outro-title,.outro-sub').forEach(el => {
+  el.style.opacity='0'; obs.observe(el);
+});
+</script>
+</body>
+</html>
